@@ -15,36 +15,42 @@ const services = [
     title: "Landing pages & páginas informativas",
     desc: "Páginas web de alto impacto que comunican tu marca, captan clientes y posicionan tu negocio en Google.",
     tags: ["Diseño UX/UI", "SEO", "Responsive"],
+    image: "https://via.placeholder.com/400x300?text=Landing",
   },
   {
     icon: ShoppingBag,
     title: "Tiendas online (E-commerce)",
     desc: "E-commerce completo: catálogo, carrito, pasarela de pago y panel de administración de pedidos.",
     tags: ["Catálogo", "Pagos", "Inventario"],
+    image: "https://via.placeholder.com/400x300?text=E-commerce",
   },
   {
     icon: UtensilsCrossed,
     title: "Menús digitales para restaurantes",
     desc: "Menús digitales con código QR, imágenes, categorías y pedidos en tiempo real desde el celular.",
     tags: ["QR", "Pedidos", "Tiempo real"],
+    image: "https://via.placeholder.com/400x300?text=Men%C3%BA",
   },
   {
     icon: CalendarCheck,
     title: "Sistemas de agendamiento de citas",
     desc: "Reserva de citas online automatizada con recordatorios, calendario y confirmación instantánea.",
     tags: ["Calendario", "Recordatorios", "Disponibilidad"],
+    image: "https://via.placeholder.com/400x300?text=Agenda",
   },
   {
     icon: Calculator,
     title: "Soluciones contables y ERP",
     desc: "Automatiza procesos contables, facturación, inventario y reportes empresariales a la medida.",
     tags: ["Facturación", "Reportes", "Automatización"],
+    image: "https://via.placeholder.com/400x300?text=ERP",
   },
   {
     icon: Workflow,
     title: "Desarrollo a la medida",
     desc: "Automatizamos cualquier proceso de tu empresa con software diseñado exclusivamente para ti.",
     tags: ["CRM", "Integraciones", "Dashboards"],
+    image: "https://via.placeholder.com/400x300?text=Custom",
   },
 ];
 
@@ -96,6 +102,9 @@ function ServiceCard({
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/20 to-brand-deep/20 text-brand ring-1 ring-line">
           <Icon size={22} />
         </div>
+        {service.image && (
+          <img src={service.image} alt={service.title} className="mt-4 w-full rounded-lg object-cover" />
+        )}
         <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
         <div className="mt-5 flex flex-wrap gap-2">
