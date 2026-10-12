@@ -15,42 +15,48 @@ const services = [
     title: "Landing pages & páginas informativas",
     desc: "Páginas web de alto impacto que comunican tu marca, captan clientes y posicionan tu negocio en Google.",
     tags: ["Diseño UX/UI", "SEO", "Responsive"],
-    image: "https://via.placeholder.com/400x300?text=Landing",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80",
   },
   {
     icon: ShoppingBag,
     title: "Tiendas online (E-commerce)",
     desc: "E-commerce completo: catálogo, carrito, pasarela de pago y panel de administración de pedidos.",
     tags: ["Catálogo", "Pagos", "Inventario"],
-    image: "https://via.placeholder.com/400x300?text=E-commerce",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=700&q=80",
   },
   {
     icon: UtensilsCrossed,
     title: "Menús digitales para restaurantes",
     desc: "Menús digitales con código QR, imágenes, categorías y pedidos en tiempo real desde el celular.",
     tags: ["QR", "Pedidos", "Tiempo real"],
-    image: "https://via.placeholder.com/400x300?text=Men%C3%BA",
+    image:
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80",
   },
   {
     icon: CalendarCheck,
     title: "Sistemas de agendamiento de citas",
     desc: "Reserva de citas online automatizada con recordatorios, calendario y confirmación instantánea.",
     tags: ["Calendario", "Recordatorios", "Disponibilidad"],
-    image: "https://via.placeholder.com/400x300?text=Agenda",
+    image:
+      "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=700&q=80",
   },
   {
     icon: Calculator,
     title: "Soluciones contables y ERP",
     desc: "Automatiza procesos contables, facturación, inventario y reportes empresariales a la medida.",
     tags: ["Facturación", "Reportes", "Automatización"],
-    image: "https://via.placeholder.com/400x300?text=ERP",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80",
   },
   {
     icon: Workflow,
     title: "Desarrollo a la medida",
     desc: "Automatizamos cualquier proceso de tu empresa con software diseñado exclusivamente para ti.",
     tags: ["CRM", "Integraciones", "Dashboards"],
-    image: "https://via.placeholder.com/400x300?text=Custom",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80",
   },
 ];
 
@@ -103,7 +109,14 @@ function ServiceCard({
           <Icon size={22} />
         </div>
         {service.image && (
-          <img src={service.image} alt={service.title} className="mt-4 w-full rounded-lg object-cover" />
+          <div className="mt-4 overflow-hidden rounded-2xl border border-line/60 bg-surface/50">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
         )}
         <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
