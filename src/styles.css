@@ -6,7 +6,7 @@
 
 /* ============================================================
    BDB Innovations — Design System
-   Dark, futuristic, innovative tech aesthetic.
+   Light blue-gray surfaces with elevated white cards.
    Brand gradient: sky blue -> royal blue (from the logo).
    ============================================================ */
 
@@ -55,11 +55,11 @@
 :root {
   --radius: 1rem;
 
-  /* Clean formal white base */
-  --background: oklch(0.995 0.004 250);
+  /* Light blue-gray base separates the white cards from the page. */
+  --background: #f2f5fa;
   --foreground: oklch(0.21 0.03 264);
 
-  --card: oklch(1 0 0 / 0.7);
+  --card: #ffffff;
   --card-foreground: oklch(0.21 0.03 264);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.03 264);
@@ -149,17 +149,19 @@
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--surface) 65%, transparent);
+  background: color-mix(in oklab, var(--card) 94%, transparent);
   backdrop-filter: blur(16px) saturate(140%);
   border: 1px solid var(--line);
-  box-shadow: 0 4px 24px -12px color-mix(in oklab, var(--brand) 18%, transparent);
+  box-shadow: 0 4px 8px -4px rgb(36 57 88 / 10%),
+    0 14px 32px -12px rgb(36 57 88 / 18%);
 }
 
 @utility glass-strong {
-  background: color-mix(in oklab, white 82%, transparent);
+  background: color-mix(in oklab, var(--card) 96%, transparent);
   backdrop-filter: blur(22px) saturate(160%);
   border: 1px solid var(--line);
-  box-shadow: 0 12px 48px -20px color-mix(in oklab, var(--brand) 22%, transparent);
+  box-shadow: 0 6px 12px -6px rgb(36 57 88 / 12%),
+    0 20px 48px -18px rgb(36 57 88 / 22%);
 }
 
 @utility glow-brand {

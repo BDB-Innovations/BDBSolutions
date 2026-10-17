@@ -15,42 +15,48 @@ const services = [
     title: "Landing pages & páginas informativas",
     desc: "Páginas web de alto impacto que comunican tu marca, captan clientes y posicionan tu negocio en Google.",
     tags: ["Diseño UX/UI", "SEO", "Responsive"],
-    image: "https://via.placeholder.com/400x300?text=Landing",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Panel de analítica web abierto en una computadora portátil",
   },
   {
     icon: ShoppingBag,
     title: "Tiendas online (E-commerce)",
     desc: "E-commerce completo: catálogo, carrito, pasarela de pago y panel de administración de pedidos.",
     tags: ["Catálogo", "Pagos", "Inventario"],
-    image: "https://via.placeholder.com/400x300?text=E-commerce",
+    image: "https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Compra en línea desde un teléfono móvil",
   },
   {
     icon: UtensilsCrossed,
     title: "Menús digitales para restaurantes",
     desc: "Menús digitales con código QR, imágenes, categorías y pedidos en tiempo real desde el celular.",
     tags: ["QR", "Pedidos", "Tiempo real"],
-    image: "https://via.placeholder.com/400x300?text=Men%C3%BA",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Interior de un restaurante con mesas preparadas",
   },
   {
     icon: CalendarCheck,
     title: "Sistemas de agendamiento de citas",
     desc: "Reserva de citas online automatizada con recordatorios, calendario y confirmación instantánea.",
     tags: ["Calendario", "Recordatorios", "Disponibilidad"],
-    image: "https://via.placeholder.com/400x300?text=Agenda",
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Agenda abierta para organizar citas y actividades",
   },
   {
     icon: Calculator,
     title: "Soluciones contables y ERP",
     desc: "Automatiza procesos contables, facturación, inventario y reportes empresariales a la medida.",
     tags: ["Facturación", "Reportes", "Automatización"],
-    image: "https://via.placeholder.com/400x300?text=ERP",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Documentos y calculadora para gestión contable",
   },
   {
     icon: Workflow,
     title: "Desarrollo a la medida",
     desc: "Automatizamos cualquier proceso de tu empresa con software diseñado exclusivamente para ti.",
     tags: ["CRM", "Integraciones", "Dashboards"],
-    image: "https://via.placeholder.com/400x300?text=Custom",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=85",
+    imageAlt: "Equipo colaborando en un proyecto de software",
   },
 ];
 
@@ -103,7 +109,12 @@ function ServiceCard({
           <Icon size={22} />
         </div>
         {service.image && (
-          <img src={service.image} alt={service.title} className="mt-4 w-full rounded-lg object-cover" />
+          <img
+            src={service.image}
+            alt={service.imageAlt}
+            loading="lazy"
+            className="mt-4 aspect-video w-full rounded-2xl object-cover"
+          />
         )}
         <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
