@@ -110,3 +110,20 @@ En ambas rutas, priorizar contacto, necesidades del negocio y evidencia verifica
 Se revisaron componentes, estilos, rutas, configuración y scripts. Esta entrega modifica documentación y aporta propuestas; no aplica el rediseño al código.
 
 El entorno de revisión no tenía node_modules ni Bun instalado. No se ejecutaron build, lint ni comprobación de tipos. Antes de publicar cambios funcionales: instalar dependencias, ejecutar esas verificaciones y revisar escritorio/móvil, teclado, movimiento reducido y contacto en navegador.
+
+## Rediseño implementado: Evolución clara
+
+La rama `feature/landing-clear-redesign` implementa la primera dirección visual:
+
+- Hero blanco/azul con titular breve, contacto principal y previews de tienda y agenda construidos con HTML/CSS. Las demos son ilustrativas, no aplicaciones operativas.
+- Servicios sin fotografías externas, con vistas esquemáticas y enlaces de consulta; ejemplos externos en una sección de fondo diferenciado.
+- Proceso con hitos visuales y sin hooks dentro de un bucle.
+- Formulario con etiquetas visibles y explicación del envío mediante la aplicación de correo.
+- Navegación con estado accesible, cierre con Escape, foco visible y margen para anclas; scroll suave desactivado con movimiento reducido.
+- Contenido visible desde el render inicial, sin depender del observador para aparecer. Se retiraron las cifras y compromisos comerciales pendientes de verificación.
+
+La tabla de análisis anterior describe el estado previo al rediseño. Los puntos implementados arriba sustituyen esos hallazgos; siguen pendientes los casos propios, un backend de captación y la configuración social/canonical del dominio definitivo.
+
+Validación del rediseño: build de producción y TypeScript completados con npm, sin generar otro lockfile. El navegador integrado no pudo conectarse al servidor local; queda pendiente la revisión visual de escritorio y móvil. La instalación reportó alertas de seguridad en dependencias existentes; no se aplicaron actualizaciones incompatibles automáticamente.
+
+Referencia de diseño: [comparación visual](docs/design/landing-concepts.png), generada con la herramienta integrada; [prompt](docs/design/design-prompt.txt).
