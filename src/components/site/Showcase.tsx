@@ -29,9 +29,9 @@ const items: Item[] = [
     accent: "from-cyan-glow/30 to-brand/10",
   },
   {
-    category: "Menú digital",
-    title: "Carta QR para restaurante",
-    desc: "Menú digital con fotos, categorías y pedidos desde el celular. Sin app que instalar.",
+    category: "Restaurantes",
+    title: "Reservas para restaurantes",
+    desc: "Una referencia de experiencia de búsqueda y reserva de mesas para restaurantes.",
     url: "https://www.opentable.com",
     cta: "Ver ejemplo en OpenTable",
     accent: "from-brand-deep/30 to-brand-bright/10",
@@ -64,7 +64,7 @@ const items: Item[] = [
 
 export default function Showcase() {
   return (
-    <section id="ejemplos" className="relative py-24 sm:py-32">
+    <section id="ejemplos" className="relative bg-surface py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10 aurora opacity-50" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
@@ -106,20 +106,28 @@ function ShowcaseCard({ item, index }: { item: Item; index: number }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="tilt-card glass ring-gradient group relative block h-full overflow-hidden rounded-3xl p-7 hover:glow-brand"
+        className="service-clean group relative block h-full"
       >
-        <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${item.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+        <div
+          className={`absolute inset-0 -z-10 bg-gradient-to-br ${item.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+        />
         <div className="flex items-center justify-between">
           <span className="rounded-full border border-line bg-brand/6 px-3 py-1 text-xs font-medium text-brand">
             {item.category}
           </span>
-          <ExternalLink size={16} className="text-muted-foreground transition-colors group-hover:text-foreground" />
+          <ExternalLink
+            size={16}
+            className="text-muted-foreground transition-colors group-hover:text-foreground"
+          />
         </div>
         <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
         <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
           {item.cta}
-          <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight
+            size={15}
+            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </span>
       </a>
     </div>

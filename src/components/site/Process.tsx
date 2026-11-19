@@ -1,5 +1,5 @@
 import { Search, PenTool, Code2, Rocket } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+
 import { SectionHeading } from "./Services";
 
 const steps = [
@@ -42,16 +42,15 @@ export default function Process() {
         <div className="mt-16">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => {
-              const { ref, shown } = useReveal<HTMLDivElement>();
               const Icon = s.icon;
               return (
                 <div
                   key={s.title}
-                  ref={ref}
-                  className={`reveal ${shown ? "reveal-in" : ""} relative`}
+
+                  className="relative"
                   style={{ transitionDelay: `${i * 110}ms` }}
                 >
-                  <div className="glass ring-gradient relative h-full rounded-3xl p-7 text-center">
+                  <div className="relative h-full border-t-2 border-brand/20 p-6 text-left">
                     <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/20 to-brand-deep/20 text-brand ring-1 ring-line">
                       <Icon size={26} />
                     </div>

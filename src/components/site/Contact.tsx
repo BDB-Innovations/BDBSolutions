@@ -42,57 +42,94 @@ export default function Contact() {
                   Cuéntanos tu idea y la <span className="text-gradient">hacemos realidad</span>
                 </>
               }
-              subtitle="Respondemos en menos de 24 horas. Sin compromiso. Te asesoramos sin costo."
+              subtitle="Hablemos de tu negocio, lo que necesitas y cómo podemos ayudarte."
             />
 
             <div className="mt-8 space-y-3">
-              <ContactRow icon={<Mail size={18} />} label="Email" value={EMAIL} href={`mailto:${EMAIL}`} />
+              <ContactRow
+                icon={<Mail size={18} />}
+                label="Email"
+                value={EMAIL}
+                href={`mailto:${EMAIL}`}
+              />
               <ContactRow
                 icon={<MessageCircle size={18} />}
                 label="WhatsApp"
                 value="Chatea con nosotros"
                 href={`https://wa.me/${WHATSAPP}`}
               />
-              <ContactRow icon={<Phone size={18} />} label="Teléfono" value={PHONE} href={`tel:${PHONE.replace(/\s+/g, "")}`} />
-              <ContactRow icon={<MapPin size={18} />} label="Cobertura" value="Ecuador y Latinoamérica · trabajo remoto" />
+              <ContactRow
+                icon={<Phone size={18} />}
+                label="Teléfono"
+                value={PHONE}
+                href={`tel:${PHONE.replace(/\s+/g, "")}`}
+              />
+              <ContactRow
+                icon={<MapPin size={18} />}
+                label="Cobertura"
+                value="Ecuador y Latinoamérica · trabajo remoto"
+              />
             </div>
           </div>
 
           <form onSubmit={onSubmit} className="space-y-4">
+            <h3 className="text-xl font-semibold">Cuéntanos sobre tu proyecto</h3>
+            <p className="text-sm text-muted-foreground">
+              Al continuar se abrirá tu aplicación de correo. Completa el envío allí o escríbenos
+              por WhatsApp.
+            </p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <input
-                className={field}
-                placeholder="Tu nombre"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                required
-              />
-              <input
-                className={field}
-                type="email"
-                placeholder="Tu email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                required
-              />
+              <label className="block space-y-2 text-sm font-medium">
+                <span>Nombre</span>
+                <input
+                  className={field}
+                  aria-label="Tu nombre"
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Tu nombre"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  required
+                />
+              </label>
+              <label className="block space-y-2 text-sm font-medium">
+                <span>Correo electrónico</span>
+                <input
+                  className={field}
+                  type="email"
+                  aria-label="Tu email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Tu email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  required
+                />
+              </label>
             </div>
-            <textarea
-              className={`${field} min-h-40 resize-y`}
-              placeholder="Cuéntanos qué necesitas..."
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              required
-            />
+            <label className="block space-y-2 text-sm font-medium">
+              <span>Tu proyecto</span>
+              <textarea
+                className={`${field} min-h-40 resize-y`}
+                aria-label="Cuéntanos qué necesitas"
+                name="message"
+                placeholder="Cuéntanos qué necesitas..."
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                required
+              />
+            </label>
             <button
               type="submit"
               className="btn-glow group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5"
             >
-              Enviar mensaje
+              Continuar en mi correo
               <Send size={16} className="transition-transform group-hover:translate-x-1" />
             </button>
             {sent && (
-              <p className="text-center text-sm text-brand">
-                ¡Gracias! Abrimos tu cliente de correo para que envíes el mensaje.
+              <p role="status" className="text-center text-sm text-brand">
+                Completa el envío en tu aplicación de correo. Si no se abrió, puedes contactarnos
+                por WhatsApp.
               </p>
             )}
           </form>
@@ -126,7 +163,11 @@ function ContactRow({
   );
   if (href)
     return (
-      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+      <a
+        href={href}
+        target={href.startsWith("http") ? "_blank" : undefined}
+        rel="noopener noreferrer"
+      >
         {inner}
       </a>
     );

@@ -6,7 +6,7 @@
 
 /* ============================================================
    BDB Innovations — Design System
-   Dark, futuristic, innovative tech aesthetic.
+   Clear, product-led software studio aesthetic.
    Brand gradient: sky blue -> royal blue (from the logo).
    ============================================================ */
 
@@ -131,7 +131,12 @@
     color: oklch(0.99 0 0);
   }
 
-  h1, h2, h3, h4, h5, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -163,7 +168,8 @@
 }
 
 @utility glow-brand {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--brand) 24%, transparent),
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand) 24%, transparent),
     0 18px 56px -22px color-mix(in oklab, var(--brand) 45%, transparent),
     0 0 44px -16px color-mix(in oklab, var(--cyan-glow) 32%, transparent);
 }
@@ -177,7 +183,9 @@
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(135deg, var(--brand-bright), transparent 40%, var(--cyan-glow) 90%);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -187,7 +195,9 @@
 /* 3D tilt card */
 @utility tilt-card {
   transform-style: preserve-3d;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
   will-change: transform;
 }
 
@@ -195,7 +205,8 @@
 @utility reveal {
   opacity: 0;
   transform: translateY(34px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 @utility reveal-in {
@@ -206,9 +217,21 @@
 /* Aurora background mesh */
 @utility aurora {
   background:
-    radial-gradient(60% 50% at 15% 10%, color-mix(in oklab, var(--brand) 9%, transparent), transparent 70%),
-    radial-gradient(50% 50% at 85% 20%, color-mix(in oklab, var(--cyan-glow) 7%, transparent), transparent 70%),
-    radial-gradient(55% 60% at 50% 100%, color-mix(in oklab, var(--brand-deep) 8%, transparent), transparent 70%);
+    radial-gradient(
+      60% 50% at 15% 10%,
+      color-mix(in oklab, var(--brand) 9%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 50% at 85% 20%,
+      color-mix(in oklab, var(--cyan-glow) 7%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 60% at 50% 100%,
+      color-mix(in oklab, var(--brand-deep) 8%, transparent),
+      transparent 70%
+    );
 }
 
 /* Grid texture */
@@ -222,10 +245,12 @@
 @utility btn-glow {
   background: linear-gradient(120deg, var(--brand-bright), var(--brand) 55%, var(--brand-deep));
   color: oklch(0.99 0 0);
-  box-shadow: 0 10px 40px -10px color-mix(in oklab, var(--brand) 80%, transparent),
+  box-shadow:
+    0 10px 40px -10px color-mix(in oklab, var(--brand) 80%, transparent),
     inset 0 1px 0 color-mix(in oklab, #fff 25%, transparent);
   &:hover {
-    box-shadow: 0 14px 50px -8px color-mix(in oklab, var(--brand) 90%, transparent),
+    box-shadow:
+      0 14px 50px -8px color-mix(in oklab, var(--brand) 90%, transparent),
       0 0 30px -6px color-mix(in oklab, var(--cyan-glow) 60%, transparent),
       inset 0 1px 0 color-mix(in oklab, #fff 30%, transparent);
     filter: brightness(1.08);
@@ -247,32 +272,217 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) translateZ(var(--z, 0px)); }
-  50% { transform: translateY(-22px) translateZ(var(--z, 0px)); }
+  0%,
+  100% {
+    transform: translateY(0) translateZ(var(--z, 0px));
+  }
+  50% {
+    transform: translateY(-22px) translateZ(var(--z, 0px));
+  }
 }
 @keyframes aurora-drift {
-  0% { transform: translate3d(-4%, -2%, 0) scale(1); }
-  100% { transform: translate3d(4%, 3%, 0) scale(1.12); }
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(4%, 3%, 0) scale(1.12);
+  }
 }
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 @keyframes shine {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 @keyframes pulse-ring {
-  0% { transform: scale(0.85); opacity: 0.7; }
-  70% { transform: scale(1.6); opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Clear evolution: restrained surfaces and product-led composition. */
+:root {
+  --background: #ffffff;
+  --brand: #244bea;
+  --brand-deep: #1835b8;
+  --brand-bright: #3560ef;
+}
+section[id] {
+  scroll-margin-top: 100px;
+}
+:focus-visible {
+  outline: 3px solid #244bea;
+  outline-offset: 5px;
+}
+.eyebrow {
+  color: #244bea;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hero-clear {
+  background:
+    radial-gradient(ellipse at 90% 60%, #eafaff 0, transparent 46%),
+    linear-gradient(180deg, #f7faff 0%, #fff 95%);
+}
+.primary-action,
+.secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 10px;
+  padding: 15px 21px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.primary-action {
+  background: #244bea;
+  color: white;
+  box-shadow: 0 7px 18px #244bea20;
+}
+.primary-action:hover {
+  background: #1835b8;
+  transform: translateY(-2px);
+}
+.secondary-action {
+  border: 1px solid #cdd7ed;
+  background: white;
+  color: #172343;
+}
+.secondary-action:hover {
+  background: #f2f6ff;
+}
+.product-preview {
+  position: relative;
+  padding: 20px 0 120px;
+  min-width: 0;
+}
+.demo-window {
+  border: 1px solid #dde5f0;
+  border-radius: 16px;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -22px #37529950;
+}
+.store-window {
+  width: 92%;
+  transform: rotate(-3deg);
+}
+.agenda-window {
+  position: absolute;
+  width: 86%;
+  bottom: 0;
+  right: 0;
+  transform: rotate(2deg);
+}
+.window-bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 10px 13px;
+  border-bottom: 1px solid #edf0f6;
+  font-size: 10px;
+  font-weight: 600;
+}
+.window-dots {
+  letter-spacing: 2px;
+  color: #a1b0c9;
+  font-size: 9px;
+}
+.demo-label {
+  margin-left: auto;
+  border-radius: 5px;
+  background: #edf3ff;
+  padding: 4px 6px;
+  font-size: 8px;
+  color: #476196;
+  white-space: nowrap;
+}
+.product-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f0f4fc, #dfe8fa);
+  color: #344b78;
+}
+.product-tile svg {
+  width: 55%;
+  height: 55%;
+}
+.preview-compact {
+  max-width: 480px;
+  margin: auto;
+}
+.service-clean {
+  border: 1px solid #e1e7f0;
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.service-clean:hover {
+  border-color: #9bb3ff;
+  box-shadow: 0 12px 30px -20px #244bea60;
+}
+@media (max-width: 480px) {
+  .product-preview {
+    padding-bottom: 130px;
+  }
+  .store-window {
+    width: 96%;
+  }
+  .agenda-window {
+    width: 95%;
+  }
+  .window-bar {
+    gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .primary-action:hover {
+    transform: none;
   }
 }

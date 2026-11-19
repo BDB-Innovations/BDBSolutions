@@ -17,6 +17,9 @@ export default function Navbar() {
 
   return (
     <header
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setOpen(false);
+      }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled ? "py-2" : "py-4"
       }`}
@@ -52,8 +55,13 @@ export default function Navbar() {
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") setOpen(false);
+              }}
               className="glass inline-flex h-10 w-10 items-center justify-center rounded-xl text-foreground md:hidden"
               aria-label="Menú"
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
             >
               {open ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -61,7 +69,10 @@ export default function Navbar() {
         </div>
 
         {open && (
-          <div className="glass-strong mt-2 flex flex-col gap-1 rounded-2xl p-3 md:hidden">
+          <div
+            id="mobile-navigation"
+            className="glass-strong mt-2 flex flex-col gap-1 rounded-2xl p-3 md:hidden"
+          >
             {links.map((l) => (
               <a
                 key={l.href}
