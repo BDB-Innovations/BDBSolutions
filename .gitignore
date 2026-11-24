@@ -17,6 +17,7 @@ dist-ssr
 *.local
 
 # Wrangler / Cloudflare
+.vercel/
 .wrangler/
 .dev.vars
 
