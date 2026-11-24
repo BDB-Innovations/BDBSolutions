@@ -109,12 +109,14 @@ function ServiceCard({
           <Icon size={22} />
         </div>
         {service.image && (
-          <img
-            src={service.image}
-            alt={service.imageAlt}
-            loading="lazy"
-            className="mt-4 aspect-video w-full rounded-2xl object-cover"
-          />
+          <div className="mt-4 overflow-hidden rounded-2xl border border-line/60 bg-surface/50">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
         )}
         <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
