@@ -1,6 +1,7 @@
-import { ArrowRight, CalendarDays, Clock3 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTilt } from "@/lib/motion";
-import StorePreview from "./StorePreview";
+import agendaImage from "@/assets/ejemplo-agenda.jpg";
+import storeImage from "@/assets/tienda-en-linea.jpg";
 
 export default function Hero() {
   const demosRef = useTilt<HTMLElement>(3);
@@ -59,36 +60,23 @@ export default function Hero() {
           </figcaption>
           <div className="mr-6 motion-safe:animate-[hero-demo-in_300ms_ease-out_backwards] sm:mr-16">
             <div className="motion-safe:animate-[hero-demo-float_2s_ease-in-out_400ms_2]">
-              <StorePreview />
+              <img
+                src={storeImage}
+                alt="Catálogo de una tienda de cerámica artesanal en un portátil"
+                width={1000}
+                height={563}
+                fetchPriority="high"
+                className="aspect-video w-full rounded-2xl border border-white/30 object-cover shadow-xl"
+              />
             </div>
           </div>
-          <div
-            role="img"
-            aria-label="Ejemplo de agendamiento de citas con calendario semanal y hora disponible"
-            className="relative -mt-4 ml-8 rounded-2xl border border-slate-200 bg-white p-4 text-slate-900 shadow-xl motion-safe:animate-[hero-demo-in_300ms_ease-out_100ms_backwards] sm:-mt-7 sm:ml-28 sm:p-5"
-          >
-            <div aria-hidden="true">
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <CalendarDays size={18} className="text-blue-600" />
-                Agenda de citas
-              </div>
-              <div className="mt-3 grid grid-cols-5 gap-1 text-center text-xs text-slate-600">
-                {["Lun", "Mar", "Mié", "Jue", "Vie"].map((day, index) => (
-                  <div key={day} className="rounded-lg bg-slate-50 py-2">
-                    <span className="block">{day}</span>
-                    <span
-                      className={`mx-auto mt-1 grid size-6 place-items-center rounded-md font-semibold ${index === 2 ? "bg-blue-700 text-white motion-safe:animate-[hero-date-highlight_600ms_ease-out_650ms_2]" : "text-slate-900"}`}
-                    >
-                      {14 + index}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 flex items-center gap-2 rounded-lg bg-cyan-50 px-3 py-2 text-xs font-medium text-cyan-900">
-                <Clock3 size={14} /> Miércoles 16 · 10:30 disponible
-              </div>
-            </div>
-          </div>
+          <img
+            src={agendaImage}
+            alt="Calendario para reservar citas en una tableta"
+            width={1000}
+            height={563}
+            className="relative -mt-5 ml-auto aspect-video w-2/3 rounded-xl border border-white/40 object-cover shadow-xl motion-safe:animate-[hero-demo-in_300ms_ease-out_100ms_backwards] sm:-mt-12"
+          />
         </figure>
       </div>
     </section>

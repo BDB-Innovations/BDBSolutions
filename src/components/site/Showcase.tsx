@@ -1,8 +1,13 @@
 import { useRef, useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
-import { ArrowUpRight, CalendarDays, UtensilsCrossed } from "lucide-react";
-import StorePreview from "./StorePreview";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "./Services";
+import landingImage from "@/assets/ejemplo-landing.jpg";
+import storeImage from "@/assets/tienda-en-linea.jpg";
+import menuImage from "@/assets/ejemplo-menu.jpg";
+import agendaImage from "@/assets/ejemplo-agenda.jpg";
+import erpImage from "@/assets/ejemplo-erp.jpg";
+import corporateImage from "@/assets/ejemplo-corporativo.jpg";
 
 type Item = {
   category: string;
@@ -11,11 +16,15 @@ type Item = {
   url: string;
   cta: string;
   accent: string;
+  image: string;
+  imageAlt: string;
 };
 
 const items = [
   {
     category: "Landing page",
+    image: landingImage,
+    imageAlt: "Página de lanzamiento de café de especialidad",
     title: "Página de producto de alto impacto",
     desc: "Landing page con narrativa clara, animaciones y llamada a la acción que convierte visitantes en clientes.",
     url: "https://stripe.com",
@@ -24,6 +33,8 @@ const items = [
   },
   {
     category: "Tienda en línea",
+    image: storeImage,
+    imageAlt: "Catálogo y carrito de una tienda de cerámica artesanal",
     title: "Tienda online con checkout",
     desc: "Catálogo, carrito y pasarela de pago. Una experiencia de compra rápida y confiable.",
     url: "https://www.allbirds.com",
@@ -32,6 +43,8 @@ const items = [
   },
   {
     category: "Menú QR",
+    image: menuImage,
+    imageAlt: "Menú digital de un restaurante con fotos y precios",
     title: "Carta QR para restaurante",
     desc: "Menú digital con fotos, categorías y pedidos desde el celular. Sin app que instalar.",
     url: "https://www.opentable.com",
@@ -40,6 +53,8 @@ const items = [
   },
   {
     category: "Agenda de citas",
+    image: agendaImage,
+    imageAlt: "Calendario de reservas y horarios disponibles",
     title: "Reserva de citas online",
     desc: "Calendario de disponibilidad, confirmación automática y recordatorios por correo o WhatsApp.",
     url: "https://calendly.com",
@@ -48,6 +63,8 @@ const items = [
   },
   {
     category: "SaaS / ERP",
+    image: erpImage,
+    imageAlt: "Panel de ventas, inventario y facturación",
     title: "Plataforma de procesos empresariales",
     desc: "Dashboard, facturación e inventario en un solo sistema. Toda tu operación en un lugar.",
     url: "https://www.holded.com",
@@ -56,6 +73,8 @@ const items = [
   },
   {
     category: "Sitio corporativo",
+    image: corporateImage,
+    imageAlt: "Sitio corporativo de un estudio de arquitectura",
     title: "Web corporativa moderna",
     desc: "Presencia digital profesional que transmite confianza y posiciona tu marca en buscadores.",
     url: "https://linear.app",
@@ -82,7 +101,7 @@ export default function Showcase() {
               Lo que <span className="text-gradient">podemos construir</span> para ti
             </>
           }
-          subtitle="Explora demos conceptuales y referencias externas para tu proyecto."
+          subtitle="Explora propuestas visuales y referencias externas para tu proyecto."
         />
 
         <Tabs.Root value={selected} onValueChange={setSelected} className="mx-auto mt-7 max-w-4xl">
@@ -157,39 +176,18 @@ function ShowcasePanel({ item }: { item: Item }) {
           {item.cta} <ArrowUpRight aria-hidden="true" size={15} />
         </a>
       </div>
-      {item.category === "Tienda en línea" && <StorePreview />}
-      {item.category === "Menú QR" && (
-        <div className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900">
-          <p className="flex items-center gap-2 font-semibold">
-            <UtensilsCrossed size={16} aria-hidden="true" /> Menú de la casa
-          </p>
-          <ul className="mt-2 divide-y divide-slate-200">
-            <li className="flex justify-between py-1.5">
-              <span>Ceviche de camarón</span>
-              <span>$8</span>
-            </li>
-            <li className="flex justify-between py-1.5">
-              <span>Ensalada de temporada</span>
-              <span>$6</span>
-            </li>
-          </ul>
-        </div>
-      )}
-      {item.category === "Agenda de citas" && (
-        <div className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900">
-          <p className="flex items-center gap-2 font-semibold">
-            <CalendarDays size={16} aria-hidden="true" /> Miércoles 16
-          </p>
-          <p className="mt-2 text-xs text-slate-600">Horarios disponibles</p>
-          <ul className="mt-2 flex flex-wrap gap-2">
-            {["09:00", "10:30", "14:00"].map((time) => (
-              <li key={time} className="rounded-md bg-blue-50 px-2 py-1 text-blue-800">
-                {time}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <figure className="min-w-0">
+        <img
+          src={item.image}
+          alt={item.imageAlt}
+          width={1000}
+          height={563}
+          loading="lazy"
+          decoding="async"
+          className="aspect-video w-full rounded-xl border border-line object-cover shadow-sm"
+        />
+        <figcaption className="mt-2 text-xs text-muted-foreground">Vista conceptual</figcaption>
+      </figure>
     </article>
   );
 }
