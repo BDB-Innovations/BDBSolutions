@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div
           className={`flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 ${
-            scrolled ? "glass-strong shadow-[0_10px_40px_-20px_rgba(20,20,60,0.18)]" : ""
+            scrolled ? "glass-strong shadow-[0_10px_40px_-20px_rgba(20,20,60,0.18)]" : "bg-white"
           }`}
         >
           <a href="#" className="flex items-center gap-2">

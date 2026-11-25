@@ -1,5 +1,7 @@
-import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { useReveal, useTilt } from "@/lib/motion";
+import { useRef, useState } from "react";
+import * as Tabs from "@radix-ui/react-tabs";
+import { ArrowUpRight, CalendarDays, UtensilsCrossed } from "lucide-react";
+import StorePreview from "./StorePreview";
 import { SectionHeading } from "./Services";
 
 type Item = {
@@ -11,7 +13,7 @@ type Item = {
   accent: string;
 };
 
-const items: Item[] = [
+const items = [
   {
     category: "Landing page",
     title: "Página de producto de alto impacto",
@@ -21,7 +23,7 @@ const items: Item[] = [
     accent: "from-brand-bright/30 to-brand/10",
   },
   {
-    category: "E-commerce",
+    category: "Tienda en línea",
     title: "Tienda online con checkout",
     desc: "Catálogo, carrito y pasarela de pago. Una experiencia de compra rápida y confiable.",
     url: "https://www.allbirds.com",
@@ -29,7 +31,7 @@ const items: Item[] = [
     accent: "from-cyan-glow/30 to-brand/10",
   },
   {
-    category: "Menú digital",
+    category: "Menú QR",
     title: "Carta QR para restaurante",
     desc: "Menú digital con fotos, categorías y pedidos desde el celular. Sin app que instalar.",
     url: "https://www.opentable.com",
@@ -37,7 +39,7 @@ const items: Item[] = [
     accent: "from-brand-deep/30 to-brand-bright/10",
   },
   {
-    category: "Agendamiento",
+    category: "Agenda de citas",
     title: "Reserva de citas online",
     desc: "Calendario de disponibilidad, confirmación automática y recordatorios por correo o WhatsApp.",
     url: "https://calendly.com",
@@ -60,11 +62,17 @@ const items: Item[] = [
     cta: "Ver ejemplo en Linear",
     accent: "from-cyan-glow/30 to-brand-deep/10",
   },
-];
+] as const satisfies readonly Item[];
+
+const [landing, store, menu, booking, erp, corporate] = items;
+const examples: readonly [Item, ...Item[]] = [store, menu, booking, landing, erp, corporate];
 
 export default function Showcase() {
+  const [selected, setSelected] = useState(examples[0].category);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
   return (
-    <section id="ejemplos" className="relative py-24 sm:py-32">
+    <section id="ejemplos" className="relative scroll-mt-20 py-12 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10 aurora opacity-50" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
@@ -74,54 +82,114 @@ export default function Showcase() {
               Lo que <span className="text-gradient">podemos construir</span> para ti
             </>
           }
-          subtitle="Referencias reales de plataformas del estilo de lo que desarrollamos. Cada enlace abre un ejemplo vivo en una nueva pestaña."
+          subtitle="Explora demos conceptuales y referencias externas para tu proyecto."
         />
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((it, i) => (
-            <ShowcaseCard key={it.url} item={it} index={i} />
-          ))}
-        </div>
+        <Tabs.Root value={selected} onValueChange={setSelected} className="mx-auto mt-7 max-w-4xl">
+          <Tabs.List
+            aria-label="Tipos de ejemplos"
+            className="grid grid-cols-3 gap-1 rounded-xl border border-line bg-surface/80 p-1 sm:flex sm:flex-wrap sm:justify-center"
+          >
+            {examples.map((item) => (
+              <Tabs.Trigger
+                key={item.category}
+                value={item.category}
+                className="min-h-11 rounded-lg px-1 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-brand data-[state=active]:bg-brand data-[state=active]:text-white sm:px-3 sm:text-sm"
+              >
+                {item.category}
+              </Tabs.Trigger>
+            ))}
+          </Tabs.List>
 
-        <p className="mt-10 text-center text-sm text-muted-foreground">
-          Estos son sitios de referencia externos para ilustrar el tipo de producto. El diseño final
-          siempre se adapta a tu marca y tus objetivos.
-        </p>
+          {examples.map((item) => (
+            <Tabs.Content
+              key={item.category}
+              value={item.category}
+              className="mt-3 touch-pan-y focus-visible:outline-2 focus-visible:outline-brand"
+              onTouchStart={(event) => {
+                const touch = event.touches[0];
+                touchStart.current =
+                  touch && event.touches.length === 1
+                    ? { x: touch.clientX, y: touch.clientY }
+                    : null;
+              }}
+              onTouchCancel={() => {
+                touchStart.current = null;
+              }}
+              onTouchEnd={(event) => {
+                const start = touchStart.current;
+                touchStart.current = null;
+                const touch = event.changedTouches[0];
+                if (!start || !touch) return;
+                const dx = touch.clientX - start.x;
+                const dy = touch.clientY - start.y;
+                if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+                const index = examples.indexOf(item);
+                const next = examples[index + (dx < 0 ? 1 : -1)];
+                if (next) setSelected(next.category);
+              }}
+            >
+              {selected === item.category && <ShowcasePanel item={item} />}
+            </Tabs.Content>
+          ))}
+        </Tabs.Root>
       </div>
     </section>
   );
 }
 
-function ShowcaseCard({ item, index }: { item: Item; index: number }) {
-  const { ref, shown } = useReveal<HTMLDivElement>();
-  const tiltRef = useTilt<HTMLAnchorElement>(7);
+function ShowcasePanel({ item }: { item: Item }) {
   return (
-    <div
-      ref={ref}
-      className={`reveal ${shown ? "reveal-in" : ""}`}
-      style={{ transitionDelay: `${(index % 3) * 90}ms` }}
-    >
-      <a
-        ref={tiltRef}
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="tilt-card glass ring-gradient group relative block h-full overflow-hidden rounded-3xl p-7 hover:glow-brand"
-      >
-        <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${item.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
-        <div className="flex items-center justify-between">
-          <span className="rounded-full border border-line bg-brand/6 px-3 py-1 text-xs font-medium text-brand">
-            {item.category}
-          </span>
-          <ExternalLink size={16} className="text-muted-foreground transition-colors group-hover:text-foreground" />
+    <article className="glass ring-gradient relative isolate grid gap-5 overflow-hidden rounded-2xl p-4 motion-safe:animate-[hero-demo-in_250ms_ease-out] sm:min-h-56 sm:grid-cols-2 sm:items-center sm:p-6">
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 -z-10 bg-gradient-to-br ${item.accent} opacity-45`}
+      />
+      <div>
+        <h3 className="text-lg font-semibold">{item.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-brand hover:underline"
+        >
+          {item.cta} <ArrowUpRight aria-hidden="true" size={15} />
+        </a>
+      </div>
+      {item.category === "Tienda en línea" && <StorePreview />}
+      {item.category === "Menú QR" && (
+        <div className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900">
+          <p className="flex items-center gap-2 font-semibold">
+            <UtensilsCrossed size={16} aria-hidden="true" /> Menú de la casa
+          </p>
+          <ul className="mt-2 divide-y divide-slate-200">
+            <li className="flex justify-between py-1.5">
+              <span>Ceviche de camarón</span>
+              <span>$8</span>
+            </li>
+            <li className="flex justify-between py-1.5">
+              <span>Ensalada de temporada</span>
+              <span>$6</span>
+            </li>
+          </ul>
         </div>
-        <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
-          {item.cta}
-          <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
-      </a>
-    </div>
+      )}
+      {item.category === "Agenda de citas" && (
+        <div className="rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900">
+          <p className="flex items-center gap-2 font-semibold">
+            <CalendarDays size={16} aria-hidden="true" /> Miércoles 16
+          </p>
+          <p className="mt-2 text-xs text-slate-600">Horarios disponibles</p>
+          <ul className="mt-2 flex flex-wrap gap-2">
+            {["09:00", "10:30", "14:00"].map((time) => (
+              <li key={time} className="rounded-md bg-blue-50 px-2 py-1 text-blue-800">
+                {time}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </article>
   );
 }
