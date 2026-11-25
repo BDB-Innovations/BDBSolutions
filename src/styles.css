@@ -282,6 +282,36 @@
   --animate-pulse-ring: pulse-ring 3s ease-out infinite;
 }
 
+@keyframes hero-glow-drift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-10%, -12%) scale(1.2);
+  }
+}
+
+@keyframes hero-demo-float {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes hero-demo-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+  @keyframes hero-demo-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0) translateZ(var(--z, 0px)); }
   50% { transform: translateY(-22px) translateZ(var(--z, 0px)); }

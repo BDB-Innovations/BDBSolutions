@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div
           className={`flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 ${
-            scrolled ? "glass-strong shadow-[0_10px_40px_-20px_rgba(20,20,60,0.18)]" : ""
+            scrolled ? "glass-strong shadow-[0_10px_40px_-20px_rgba(20,20,60,0.18)]" : "bg-white"
           }`}
         >
           <a href="#" className="flex items-center gap-2">
@@ -46,7 +46,8 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <a
               href="#contacto"
-              className="btn-glow hidden rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex"
+              onClick={() => setOpen(false)}
+              className="btn-glow inline-flex rounded-xl px-3 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 sm:px-5"
             >
               Hablemos
             </a>
@@ -72,13 +73,6 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#contacto"
-              onClick={() => setOpen(false)}
-              className="btn-glow mt-1 rounded-xl px-4 py-3 text-center text-sm font-semibold"
-            >
-              Hablemos
-            </a>
           </div>
         )}
       </div>

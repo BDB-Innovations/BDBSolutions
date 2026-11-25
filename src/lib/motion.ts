@@ -51,6 +51,7 @@ export function useTilt<T extends HTMLElement = HTMLDivElement>(max = 12) {
 
     let raf = 0;
     const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       const rect = el.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width;
       const py = (e.clientY - rect.top) / rect.height;
