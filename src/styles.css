@@ -186,6 +186,40 @@
   }
 }
 
+@property --process-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .process-border-flow::before {
+    background: conic-gradient(
+      from var(--process-border-angle),
+      var(--brand-bright),
+      transparent 30%,
+      var(--cyan-glow) 52%,
+      transparent 78%,
+      var(--brand-bright)
+    );
+    animation: process-border-turn 4s linear infinite;
+  }
+
+  #proceso .reveal:nth-child(2n) .process-border-flow::before {
+    animation-delay: -1s;
+  }
+
+  #proceso .reveal:nth-child(3n) .process-border-flow::before {
+    animation-delay: -2s;
+  }
+}
+
+@keyframes process-border-turn {
+  to {
+    --process-border-angle: 360deg;
+  }
+}
+
 /* 3D tilt card */
 @utility tilt-card {
   transform-style: preserve-3d;
