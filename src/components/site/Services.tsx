@@ -132,12 +132,14 @@ function ServiceCard({ service, index }: { service: (typeof services)[number]; i
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/20 to-brand-deep/20 text-brand ring-1 ring-line">
           <Icon size={22} />
         </div>
-        <img
-          src={service.image}
-          alt={service.imageAlt}
-          loading="lazy"
-          className="mt-4 aspect-video w-full rounded-2xl object-cover"
-        />
+        <div className="mt-4 overflow-hidden rounded-2xl border border-line/60 bg-surface/50">
+          <img
+            src={service.image}
+            alt={service.imageAlt}
+            loading="lazy"
+            className="aspect-video w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+          />
+        </div>
         <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
         <div className="mt-5 flex flex-wrap gap-2">

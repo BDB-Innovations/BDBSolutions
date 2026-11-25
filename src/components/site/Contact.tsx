@@ -3,10 +3,9 @@ import { Mail, MessageCircle, Phone, Send, MapPin } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { SectionHeading } from "./Services";
 
-// TODO: replace with your real contact details
 const EMAIL = "contacto@bdbinnovations.com";
-const WHATSAPP = "593000000000"; // formato internacional, sin +
-const PHONE = "+593 00 000 0000";
+const WHATSAPP = "593978690326"; // formato internacional, sin +
+const PHONE = "+593 978 690 326";
 
 export default function Contact() {
   const { ref, shown } = useReveal<HTMLDivElement>();
@@ -54,7 +53,7 @@ export default function Contact() {
                 value="Chatea con nosotros"
                 href={`https://wa.me/${WHATSAPP}`}
               />
-              <ContactRow icon={<Phone size={18} />} label="Teléfono" value={PHONE} href={`tel:${PHONE}`} />
+              <ContactRow icon={<Phone size={18} />} label="Teléfono" value={PHONE} href={`tel:${PHONE.replace(/\s+/g, "")}`} />
               <ContactRow icon={<MapPin size={18} />} label="Cobertura" value="Ecuador y Latinoamérica · trabajo remoto" />
             </div>
           </div>
